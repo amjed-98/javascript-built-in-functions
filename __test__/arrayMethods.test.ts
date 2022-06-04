@@ -10,6 +10,7 @@ import {
   findRight,
   fill,
   findIndex,
+  findIndexRight,
 } from '../functions/arrayMethods';
 
 it('forEach', () => {
@@ -252,5 +253,25 @@ describe('findIndex', () => {
     expect(func).toHaveBeenNthCalledWith(1, 1, 0, startingArray);
     expect(func).toHaveBeenNthCalledWith(2, 2, 1, startingArray);
     expect(func).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe('findIndexRight', () => {
+  it('with no index found', () => {
+    const func = jest.fn((elem) => elem === 5);
+    const startingArray = [1, 2, 3];
+    const result = findIndexRight(startingArray, func);
+
+    expect(result).toEqual(-1);
+    expect(func).toHaveBeenCalledTimes(3);
+  });
+
+  it('with a index found', () => {
+    const func = jest.fn((elem) => elem === 2);
+    const startingArray = [1, 2, 3, 2];
+    const result = findIndexRight(startingArray, func);
+
+    expect(result).toEqual(3);
+    expect(func).toHaveBeenCalledTimes(1);
   });
 });

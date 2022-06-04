@@ -124,4 +124,28 @@ const findIndex = (array: any[], cb: Function): number | -1 => {
   return -1;
 };
 
-export { forEach, find, findRight, filter, map, every, some, flat, reduce, fill, findIndex };
+const findIndexRight = (array: any[], cb: Function): number | -1 => {
+  for (let i = array.length - 1; i >= 0; i--) {
+    const element = array[i];
+    const isFound = cb(element, i, array);
+
+    if (isFound) return i;
+  }
+
+  return -1;
+};
+
+export {
+  forEach,
+  find,
+  findRight,
+  filter,
+  map,
+  every,
+  some,
+  flat,
+  reduce,
+  fill,
+  findIndex,
+  findIndexRight,
+};
