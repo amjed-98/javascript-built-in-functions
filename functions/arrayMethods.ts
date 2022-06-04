@@ -72,4 +72,20 @@ const some = (array: any[], cb: Function): boolean => {
   return false;
 };
 
-export { forEach, find, findRight, filter, map, every, some };
+const flat = (array: any[], level: number = 1): any[] => {
+  const flattenArray = [];
+
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+
+    if (Array.isArray(element) && level > 0) {
+      flattenArray.push(...flat(element, level - 1));
+    } else {
+      flattenArray.push(element);
+    }
+  }
+
+  return flattenArray;
+};
+
+export { forEach, find, findRight, filter, map, every, some, flat };
