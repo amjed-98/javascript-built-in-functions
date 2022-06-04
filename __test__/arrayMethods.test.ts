@@ -8,6 +8,7 @@ import {
   flat,
   find,
   findRight,
+  fill,
 } from '../functions/arrayMethods';
 
 it('forEach', () => {
@@ -188,5 +189,42 @@ describe('findRight', () => {
     expect(result).toEqual(2);
 
     expect(func).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('fill', () => {
+  it('with no start index and no end index', () => {
+    const startingArray = [1, 2, 3, 4];
+    const result = fill(startingArray, 10);
+
+    expect(result).toEqual([10, 10, 10, 10]);
+  });
+
+  it('with a start index and no end index', () => {
+    const startingArray = [1, 2, 3, 2];
+    const result = fill(startingArray, 10, 2);
+
+    expect(result).toEqual([1, 2, 10, 10]);
+  });
+
+  it('with a start index and end index', () => {
+    const startingArray = [1, 2, 3, 2];
+    const result = fill(startingArray, 10, 1, 3);
+
+    expect(result).toEqual([1, 10, 10, 2]);
+  });
+
+  it('with a start index and end index', () => {
+    const startingArray = [1, 2, 3, 2];
+    const result = fill(startingArray, 10, 1, 3);
+
+    expect(result).toEqual([1, 10, 10, 2]);
+  });
+
+  it('with no value argument', () => {
+    const startingArray = [1, 2, 3, 2];
+    const result = fill(startingArray);
+
+    expect(result).toEqual([undefined, undefined, undefined, undefined]);
   });
 });

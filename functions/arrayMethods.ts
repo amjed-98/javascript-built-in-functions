@@ -101,4 +101,16 @@ const reduce = (array: any[], cb: Function, initValue?: any) => {
   return result;
 };
 
-export { forEach, find, findRight, filter, map, every, some, flat, reduce };
+const fill = (array: any[], value?: any, start = 0, end = array?.length): any[] => {
+  if (!array) throw new Error('please pass an array as a first argument');
+  if (end > array.length) end = array.length;
+  if (start < 0) start = 0;
+
+  for (let i = start; i < end; i++) {
+    array[i] = value;
+  }
+
+  return array;
+};
+
+export { forEach, find, findRight, filter, map, every, some, flat, reduce, fill };
