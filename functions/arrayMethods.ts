@@ -88,4 +88,17 @@ const flat = (array: any[], level: number = 1): any[] => {
   return flattenArray;
 };
 
-export { forEach, find, findRight, filter, map, every, some, flat };
+const reduce = (array: any[], cb: Function, initValue?: any) => {
+  let result = initValue;
+
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+
+    if (!initValue && i === 0) result = element;
+    else result = cb(result, element, i, array);
+  }
+
+  return result;
+};
+
+export { forEach, find, findRight, filter, map, every, some, flat, reduce };
