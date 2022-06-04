@@ -50,4 +50,15 @@ const map = (array: any[], cb: Function): any[] => {
   return mappedArray;
 };
 
-export { forEach, find, findRight, filter, map };
+const every = (array: any[], cb: Function): boolean => {
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    const isMatch = cb(element, i, array);
+
+    if (!isMatch) return false;
+  }
+
+  return true;
+};
+
+export { forEach, find, findRight, filter, map, every };
