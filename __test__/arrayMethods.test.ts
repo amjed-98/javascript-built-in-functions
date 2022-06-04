@@ -9,6 +9,7 @@ import {
   find,
   findRight,
   fill,
+  findIndex,
 } from '../functions/arrayMethods';
 
 it('forEach', () => {
@@ -226,5 +227,30 @@ describe('fill', () => {
     const result = fill(startingArray);
 
     expect(result).toEqual([undefined, undefined, undefined, undefined]);
+  });
+});
+
+describe('findIndex', () => {
+  it('with no index found', () => {
+    const func = jest.fn((elem) => elem === 5);
+    const startingArray = [1, 2, 3];
+    const result = findIndex(startingArray, func);
+
+    expect(result).toEqual(-1);
+    expect(func).toHaveBeenNthCalledWith(1, 1, 0, startingArray);
+    expect(func).toHaveBeenNthCalledWith(2, 2, 1, startingArray);
+    expect(func).toHaveBeenNthCalledWith(3, 3, 2, startingArray);
+    expect(func).toHaveBeenCalledTimes(3);
+  });
+
+  it('with a index found', () => {
+    const func = jest.fn((elem) => elem === 2);
+    const startingArray = [1, 2, 3, 2];
+    const result = findIndex(startingArray, func);
+
+    expect(result).toEqual(1);
+    expect(func).toHaveBeenNthCalledWith(1, 1, 0, startingArray);
+    expect(func).toHaveBeenNthCalledWith(2, 2, 1, startingArray);
+    expect(func).toHaveBeenCalledTimes(2);
   });
 });

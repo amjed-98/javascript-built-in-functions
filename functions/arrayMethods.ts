@@ -113,4 +113,15 @@ const fill = (array: any[], value?: any, start = 0, end = array?.length): any[] 
   return array;
 };
 
-export { forEach, find, findRight, filter, map, every, some, flat, reduce, fill };
+const findIndex = (array: any[], cb: Function): number | -1 => {
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    const isFound = cb(element, i, array);
+
+    if (isFound) return i;
+  }
+
+  return -1;
+};
+
+export { forEach, find, findRight, filter, map, every, some, flat, reduce, fill, findIndex };
