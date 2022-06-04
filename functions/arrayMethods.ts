@@ -5,4 +5,14 @@ const forEach = (array: any[], cb: Function): void => {
   }
 };
 
-export { forEach };
+const find = (array: any[], cb: Function): any | undefined => {
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+
+    const isFound = cb(element, i, array);
+
+    if (isFound) return element;
+  }
+};
+
+export { forEach, find };
