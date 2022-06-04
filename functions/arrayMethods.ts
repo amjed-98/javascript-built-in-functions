@@ -61,4 +61,15 @@ const every = (array: any[], cb: Function): boolean => {
   return true;
 };
 
-export { forEach, find, findRight, filter, map, every };
+const some = (array: any[], cb: Function): boolean => {
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    const isMatch = cb(element, i, array);
+
+    if (isMatch) return true;
+  }
+
+  return false;
+};
+
+export { forEach, find, findRight, filter, map, every, some };
