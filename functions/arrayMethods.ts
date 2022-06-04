@@ -37,4 +37,17 @@ const filter = (array: any[], cb: Function): any[] => {
   return filteredArray;
 };
 
-export { forEach, find, findRight, filter };
+const map = (array: any[], cb: Function): any[] => {
+  const mappedArray = [];
+
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    const mappedElement = cb(element, i, array);
+
+    mappedArray.push(mappedElement);
+  }
+
+  return mappedArray;
+};
+
+export { forEach, find, findRight, filter, map };
