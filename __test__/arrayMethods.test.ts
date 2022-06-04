@@ -11,7 +11,9 @@ import {
   fill,
   findIndex,
   findIndexRight,
+  includes,
 } from '../functions/arrayMethods';
+1;
 
 it('forEach', () => {
   const func = jest.fn();
@@ -273,5 +275,21 @@ describe('findIndexRight', () => {
 
     expect(result).toEqual(3);
     expect(func).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('includes', () => {
+  const startingArray = [1, 23, 4, 5, 6];
+
+  it('with element found', () => {
+    const result = includes(startingArray, 4);
+
+    expect(result).toBeTruthy();
+  });
+
+  it('with no element found', () => {
+    const result = includes(startingArray, 3);
+
+    expect(result).toBeFalsy();
   });
 });

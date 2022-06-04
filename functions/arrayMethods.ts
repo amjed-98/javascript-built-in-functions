@@ -135,6 +135,14 @@ const findIndexRight = (array: any[], cb: Function): number | -1 => {
   return -1;
 };
 
+const includes = (array: any[], target: any): boolean => {
+  for (const element of array) {
+    if (element === target) return true;
+  }
+
+  return false;
+};
+
 export {
   forEach,
   find,
@@ -148,4 +156,5 @@ export {
   fill,
   findIndex,
   findIndexRight,
+  includes,
 };
