@@ -15,4 +15,12 @@ const find = (array: any[], cb: Function): any | undefined => {
   }
 };
 
-export { forEach, find };
+const findRight = (array: any[], cb: Function): any | undefined => {
+  for (let i = array.length - 1; i >= 0; i--) {
+    const element = array[i];
+    const isFound = cb(element, i, array);
+    if (isFound) return element;
+  }
+};
+
+export { forEach, find, findRight };
