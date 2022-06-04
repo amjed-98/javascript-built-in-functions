@@ -23,4 +23,18 @@ const findRight = (array: any[], cb: Function): any | undefined => {
   }
 };
 
-export { forEach, find, findRight };
+const filter = (array: any[], cb: Function): any[] => {
+  const filteredArray = [];
+
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+
+    const isMatch = cb(element, i, array);
+
+    if (isMatch) filteredArray.push(element);
+  }
+
+  return filteredArray;
+};
+
+export { forEach, find, findRight, filter };
