@@ -13,6 +13,7 @@ import {
   findIndexRight,
   includes,
   reverse,
+  join,
 } from '../functions/arrayMethods';
 1;
 
@@ -300,4 +301,23 @@ it('reverse', () => {
   const result = reverse(startingArray);
 
   expect(result).toEqual([4, 3, 2, 1]);
+});
+
+describe('join', () => {
+  const startingArray = ['amjad', 'yahia', 'software', 'developer'];
+
+  it('should separate with "@" ', () => {
+    const result = join(startingArray, '@');
+    expect(result).toEqual('amjad@yahia@software@developer');
+  });
+
+  it('should separate with "-" when no separator provided', () => {
+    const result = join(startingArray);
+    expect(result).toEqual('amjad,yahia,software,developer');
+  });
+
+  it('should separate and stringify number elements', () => {
+    const result = join([1, 2, 3, 4]);
+    expect(result).toEqual('1,2,3,4');
+  });
 });

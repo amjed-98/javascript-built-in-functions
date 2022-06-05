@@ -158,6 +158,22 @@ const reverse = (array: any[]): any[] => {
   return array;
 };
 
+const join = (array: any[], separator: string = ',') => {
+  let str = '';
+
+  for (const index in array) {
+    // ? if last element don't insert separator
+    if (+index === array.length - 1) {
+      str += `${array[index]}`;
+      return str;
+    }
+
+    str += `${array[index]}${separator}`;
+  }
+
+  return str;
+};
+
 export {
   forEach,
   find,
@@ -173,4 +189,5 @@ export {
   findIndexRight,
   includes,
   reverse,
+  join,
 };
