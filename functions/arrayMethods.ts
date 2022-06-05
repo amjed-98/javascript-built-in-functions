@@ -158,7 +158,7 @@ const reverse = (array: any[]): any[] => {
   return array;
 };
 
-const join = (array: any[], separator: string = ',') => {
+const join = (array: any[], separator: string = ','): string => {
   let str = '';
 
   for (const index in array) {
@@ -173,6 +173,8 @@ const join = (array: any[], separator: string = ',') => {
 
   return str;
 };
+
+// const split = (array: any[],separator:string)
 
 export {
   forEach,
