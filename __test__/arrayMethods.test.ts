@@ -14,6 +14,7 @@ import {
   includes,
   reverse,
   join,
+  split,
 } from '../functions/arrayMethods';
 1;
 
@@ -319,5 +320,24 @@ describe('join', () => {
   it('should separate and stringify number elements', () => {
     const result = join([1, 2, 3, 4]);
     expect(result).toEqual('1,2,3,4');
+  });
+});
+
+describe('split', () => {
+  const startingString = 'amjad@yahia@software@developer';
+
+  it('should split on "@" ', () => {
+    const result = split(startingString, '@');
+    expect(result).toEqual(['amjad', 'yahia', 'software', 'developer']);
+  });
+
+  it('should split on " " ', () => {
+    const result = split(startingString);
+    expect(result).toEqual(['amjad@yahia@software@developer']);
+  });
+
+  it('should split to an array of single characters ', () => {
+    const result = split('amjad', '');
+    expect(result).toEqual(['a', 'm', 'j', 'a', 'd']);
   });
 });

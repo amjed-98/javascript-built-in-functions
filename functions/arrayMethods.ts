@@ -174,6 +174,37 @@ const join = (array: any[], separator: string = ','): string => {
   return str;
 };
 
+const split = (str: string, separator: string | number = ' '): string[] => {
+  const array = [];
+
+  if (separator === ' ') return [str];
+
+  if (separator === '') {
+    for (let i = 0; i < str.length; i++) {
+      const char = str[i];
+      if (char === `${separator}`) continue;
+      array.push(char);
+    }
+  } else {
+    let tempStr = '';
+
+    for (let i = 0; i < str.length; i++) {
+      const char = str[i];
+
+      if (char === `${separator}` || i === str.length - 1) {
+        if (i === str.length - 1) tempStr += char;
+
+        array.push(tempStr);
+        tempStr = '';
+        continue;
+      }
+
+      tempStr += char;
+    }
+  }
+  return array;
+};
+
 export {
   forEach,
   find,
@@ -190,4 +221,5 @@ export {
   includes,
   reverse,
   join,
+  split,
 };
