@@ -12,6 +12,7 @@ import {
   findIndex,
   findIndexRight,
   includes,
+  reverse,
 } from '../functions/arrayMethods';
 1;
 
@@ -292,4 +293,11 @@ describe('includes', () => {
 
     expect(result).toBeFalsy();
   });
+});
+
+it('reverse', () => {
+  const startingArray = [1, 2, 3, 4];
+  const result = reverse(startingArray);
+
+  expect(result).toEqual([4, 3, 2, 1]);
 });

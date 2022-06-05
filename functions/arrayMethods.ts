@@ -143,6 +143,21 @@ const includes = (array: any[], target: any): boolean => {
   return false;
 };
 
+const reverse = (array: any[]): any[] => {
+  const midIndex = Math.floor(array.length / 2);
+  let counter = 0;
+
+  while (counter < midIndex) {
+    [array[array.length - 1 - counter], array[counter]] = [
+      array[counter],
+      array[array.length - 1 - counter],
+    ];
+
+    counter++;
+  }
+  return array;
+};
+
 export {
   forEach,
   find,
@@ -157,4 +172,5 @@ export {
   findIndex,
   findIndexRight,
   includes,
+  reverse,
 };
