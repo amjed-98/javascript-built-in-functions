@@ -174,8 +174,6 @@ const join = (array: any[], separator: string = ','): string => {
   return str;
 };
 
-// const split = (array: any[],separator:string)
-
 export {
   forEach,
   find,
