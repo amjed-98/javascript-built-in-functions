@@ -205,6 +205,25 @@ const split = (str: string, separator: string | number = ' '): string[] => {
   return array;
 };
 
+const slice = (
+  target: any[] | string,
+  start: number = 0,
+  end: number = target.length,
+): any[] | string => {
+  const isString = typeof target === 'string';
+
+  let sliced: any[] | string = isString ? '' : [];
+
+  for (let i = start; i < end; i++) {
+    const element = target[i];
+
+    if (isString) sliced += element;
+    else (sliced as any[]).push(element);
+  }
+
+  return sliced;
+};
+
 export {
   forEach,
   find,
@@ -222,4 +241,5 @@ export {
   reverse,
   join,
   split,
+  slice,
 };

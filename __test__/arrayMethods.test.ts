@@ -15,6 +15,7 @@ import {
   reverse,
   join,
   split,
+  slice,
 } from '../functions/arrayMethods';
 1;
 
@@ -339,5 +340,34 @@ describe('split', () => {
   it('should split to an array of single characters ', () => {
     const result = split('amjad', '');
     expect(result).toEqual(['a', 'm', 'j', 'a', 'd']);
+  });
+});
+
+describe('slice', () => {
+  const startingArray = [1, 2, 3, 4];
+  const startingString = 'amjadyahia';
+
+  it('should slice from start index', () => {
+    const arrayResult = slice(startingArray, 1);
+    const strResult = slice(startingString, 1);
+
+    expect(arrayResult).toEqual([2, 3, 4]);
+    expect(strResult).toEqual('mjadyahia');
+  });
+
+  it('should slice from start index and end index', () => {
+    const arrayResult = slice(startingArray, 1, 3);
+    const strResult = slice(startingString, 1, 3);
+
+    expect(arrayResult).toEqual([2, 3]);
+    expect(strResult).toEqual('mj');
+  });
+
+  it('should slice the whole target when no start & end index provided', () => {
+    const arrayResult = slice(startingArray);
+    const strResult = slice(startingString);
+
+    expect(arrayResult).toEqual(startingArray);
+    expect(strResult).toEqual(strResult);
   });
 });
