@@ -165,7 +165,7 @@ const join = (array: any[], separator: string = ','): string => {
     // ? if last element don't insert separator
     if (+index === array.length - 1) {
       str += `${array[index]}`;
-      return str;
+      continue;
     }
 
     str += `${array[index]}${separator}`;
