@@ -17,6 +17,7 @@ import {
   split,
   slice,
   push,
+  pop,
 } from '../functions/arrayMethods';
 1;
 
@@ -380,5 +381,15 @@ describe('push', () => {
 
     expect(startingArray).toEqual([1, 2, 3, 4]);
     expect(newLength).toEqual(4);
+  });
+});
+
+describe('pop', () => {
+  const startingArray = [1, 2, 3];
+  it('should pop last element', () => {
+    const poppedElement = pop(startingArray);
+
+    expect(startingArray).toEqual([1, 2]);
+    expect(poppedElement).toEqual(3);
   });
 });

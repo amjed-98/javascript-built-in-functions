@@ -229,6 +229,13 @@ const push = (arr: any[], element: any): number => {
   return arr.length;
 };
 
+const pop = (arr: any[]): any => {
+  const poppedElement = arr.at(-1);
+  arr.length = arr.length - 1;
+
+  return poppedElement;
+};
+
 export {
   forEach,
   find,
@@ -248,4 +255,5 @@ export {
   split,
   slice,
   push,
+  pop,
 };
