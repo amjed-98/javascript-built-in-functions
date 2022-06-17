@@ -224,6 +224,11 @@ const slice = (
   return sliced;
 };
 
+const push = (arr: any[], element: any): number => {
+  arr[arr.length] = element;
+  return arr.length;
+};
+
 export {
   forEach,
   find,
@@ -242,4 +247,5 @@ export {
   join,
   split,
   slice,
+  push,
 };

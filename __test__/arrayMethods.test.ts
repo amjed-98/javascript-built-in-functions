@@ -16,6 +16,7 @@ import {
   join,
   split,
   slice,
+  push,
 } from '../functions/arrayMethods';
 1;
 
@@ -369,5 +370,15 @@ describe('slice', () => {
 
     expect(arrayResult).toEqual(startingArray);
     expect(strResult).toEqual(strResult);
+  });
+});
+
+describe('push', () => {
+  const startingArray = [1, 2, 3];
+  it('should push element to last index', () => {
+    const newLength = push(startingArray, 4);
+
+    expect(startingArray).toEqual([1, 2, 3, 4]);
+    expect(newLength).toEqual(4);
   });
 });
