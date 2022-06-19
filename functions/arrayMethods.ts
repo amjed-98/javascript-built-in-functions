@@ -236,6 +236,20 @@ const pop = (arr: any[]): any => {
   return poppedElement;
 };
 
+const flatMap = <T>(arr: T[], cb: (el: T, i: number, arr: any[]) => any): any[] => {
+  const mappedArray = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+
+    const mappedElement = cb(element, i, arr);
+
+    mappedArray.push(...flat(mappedElement));
+  }
+
+  return mappedArray;
+};
+
 export {
   forEach,
   find,
@@ -256,4 +270,5 @@ export {
   slice,
   push,
   pop,
+  flatMap,
 };

@@ -18,6 +18,7 @@ import {
   slice,
   push,
   pop,
+  flatMap,
 } from '../functions/arrayMethods';
 1;
 
@@ -391,5 +392,19 @@ describe('pop', () => {
 
     expect(startingArray).toEqual([1, 2]);
     expect(poppedElement).toEqual(3);
+  });
+});
+
+describe('flatMap', () => {
+  it('flatMap', () => {
+    const func = jest.fn((el) => [el.split(' ')]);
+    const startingArray = ["it's Sunny in", '', 'California'];
+    const newArray = flatMap(startingArray, func);
+
+    expect(newArray).toEqual(["it's", 'Sunny', 'in', '', 'California']);
+    expect(func).toHaveBeenNthCalledWith(1, "it's Sunny in", 0, startingArray);
+    expect(func).toHaveBeenNthCalledWith(2, '', 1, startingArray);
+    expect(func).toHaveBeenNthCalledWith(3, 'California', 2, startingArray);
+    expect(func).toHaveBeenCalledTimes(3);
   });
 });
