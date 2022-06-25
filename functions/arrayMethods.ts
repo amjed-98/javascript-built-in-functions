@@ -1,35 +1,43 @@
-const forEach = (array: any[], cb: Function): void => {
+type TCb<T> = (el: T, i: number, arr: any[]) => any;
+
+const forEach = <T>(array: T[], cb: TCb<T>): void => {
   for (let i = 0; i < array.length; i++) {
     const element = array[i];
     cb(element, i, array);
   }
 };
 
-const find = (array: any[], cb: Function): any | undefined => {
+const find = <T>(array: T[], cb: TCb<T>): T | undefined => {
   for (let i = 0; i < array.length; i++) {
     const element = array[i];
 
-    const isFound = cb(element, i, array);
+    const isFound = cb(element, i, array) as boolean | T;
 
     if (isFound) return element;
   }
+
+  return;
 };
 
-const findRight = (array: any[], cb: Function): any | undefined => {
+const findRight = <T>(array: T[], cb: TCb<T>): T | undefined => {
   for (let i = array.length - 1; i >= 0; i--) {
     const element = array[i];
-    const isFound = cb(element, i, array);
+
+    const isFound = cb(element, i, array) as boolean | T;
+
     if (isFound) return element;
   }
+
+  return;
 };
 
-const filter = (array: any[], cb: Function): any[] => {
+const filter = <T>(array: T[], cb: TCb<T>): T[] => {
   const filteredArray = [];
 
   for (let i = 0; i < array.length; i++) {
     const element = array[i];
 
-    const isMatch = cb(element, i, array);
+    const isMatch = cb(element, i, array) as boolean | T;
 
     if (isMatch) filteredArray.push(element);
   }
@@ -37,7 +45,7 @@ const filter = (array: any[], cb: Function): any[] => {
   return filteredArray;
 };
 
-const map = (array: any[], cb: Function): any[] => {
+const map = <T>(array: T[], cb: TCb<T>): any[] => {
   const mappedArray = [];
 
   for (let i = 0; i < array.length; i++) {
@@ -50,10 +58,10 @@ const map = (array: any[], cb: Function): any[] => {
   return mappedArray;
 };
 
-const every = (array: any[], cb: Function): boolean => {
+const every = <T>(array: T[], cb: TCb<T>): boolean => {
   for (let i = 0; i < array.length; i++) {
     const element = array[i];
-    const isMatch = cb(element, i, array);
+    const isMatch = cb(element, i, array) as boolean | T;
 
     if (!isMatch) return false;
   }
@@ -61,10 +69,10 @@ const every = (array: any[], cb: Function): boolean => {
   return true;
 };
 
-const some = (array: any[], cb: Function): boolean => {
+const some = <T>(array: T[], cb: TCb<T>): boolean => {
   for (let i = 0; i < array.length; i++) {
     const element = array[i];
-    const isMatch = cb(element, i, array);
+    const isMatch = cb(element, i, array) as boolean | T;
 
     if (isMatch) return true;
   }
@@ -72,14 +80,15 @@ const some = (array: any[], cb: Function): boolean => {
   return false;
 };
 
-const flat = (array: any[], level: number = 1): any[] => {
+const flat = <T>(array: T[], level = 1): any[] => {
   const flattenArray = [];
 
   for (let i = 0; i < array.length; i++) {
     const element = array[i];
 
     if (Array.isArray(element) && level > 0) {
-      flattenArray.push(...flat(element, level - 1));
+      const flatten = flat(element, level - 1);
+      flattenArray.push(...flatten);
     } else {
       flattenArray.push(element);
     }
@@ -88,7 +97,8 @@ const flat = (array: any[], level: number = 1): any[] => {
   return flattenArray;
 };
 
-const reduce = (array: any[], cb: Function, initValue?: any) => {
+type TReduceCb<T> = (result: any, el: T, i: number, arr: any[]) => any;
+const reduce = <T>(array: T[], cb: TReduceCb<T>, initValue?: any) => {
   let result = initValue;
 
   for (let i = 0; i < array.length; i++) {
@@ -101,8 +111,8 @@ const reduce = (array: any[], cb: Function, initValue?: any) => {
   return result;
 };
 
-const fill = (array: any[], value?: any, start = 0, end = array?.length): any[] => {
-  if (!array) throw new Error('please pass an array as a first argument');
+const fill = <T>(array: any[], value?: T, start = 0, end = array?.length): T[] => {
+  if (!array) throw new Error("please pass an array as a first argument");
   if (end > array.length) end = array.length;
   if (start < 0) start = 0;
 
@@ -113,10 +123,10 @@ const fill = (array: any[], value?: any, start = 0, end = array?.length): any[] 
   return array;
 };
 
-const findIndex = (array: any[], cb: Function): number | -1 => {
+const findIndex = <T>(array: T[], cb: TCb<T>): number | -1 => {
   for (let i = 0; i < array.length; i++) {
     const element = array[i];
-    const isFound = cb(element, i, array);
+    const isFound = cb(element, i, array) as boolean | T;
 
     if (isFound) return i;
   }
@@ -124,10 +134,10 @@ const findIndex = (array: any[], cb: Function): number | -1 => {
   return -1;
 };
 
-const findIndexRight = (array: any[], cb: Function): number | -1 => {
+const findIndexRight = <T>(array: T[], cb: TCb<T>): number | -1 => {
   for (let i = array.length - 1; i >= 0; i--) {
     const element = array[i];
-    const isFound = cb(element, i, array);
+    const isFound = cb(element, i, array) as boolean | T;
 
     if (isFound) return i;
   }
@@ -135,7 +145,7 @@ const findIndexRight = (array: any[], cb: Function): number | -1 => {
   return -1;
 };
 
-const includes = (array: any[], target: any): boolean => {
+const includes = <T>(array: T[], target: T): boolean => {
   for (const element of array) {
     if (element === target) return true;
   }
@@ -143,7 +153,7 @@ const includes = (array: any[], target: any): boolean => {
   return false;
 };
 
-const reverse = (array: any[]): any[] => {
+const reverse = <T>(array: T[]): T[] => {
   const midIndex = Math.floor(array.length / 2);
   let counter = 0;
 
@@ -158,8 +168,8 @@ const reverse = (array: any[]): any[] => {
   return array;
 };
 
-const join = (array: any[], separator: string = ','): string => {
-  let str = '';
+const join = <T>(array: T[], separator = ","): string => {
+  let str = "";
 
   for (const index in array) {
     // ? if last element don't insert separator
@@ -174,19 +184,19 @@ const join = (array: any[], separator: string = ','): string => {
   return str;
 };
 
-const split = (str: string, separator: string | number = ' '): string[] => {
-  const array = [];
+const split = (str: string, separator: string | number = " "): string[] => {
+  const array: string[] = [];
 
-  if (separator === ' ') return [str];
+  if (separator === " ") return [str];
 
-  if (separator === '') {
+  if (separator === "") {
     for (let i = 0; i < str.length; i++) {
       const char = str[i];
       if (char === `${separator}`) continue;
       array.push(char);
     }
   } else {
-    let tempStr = '';
+    let tempStr = "";
 
     for (let i = 0; i < str.length; i++) {
       const char = str[i];
@@ -195,7 +205,7 @@ const split = (str: string, separator: string | number = ' '): string[] => {
         if (i === str.length - 1) tempStr += char;
 
         array.push(tempStr);
-        tempStr = '';
+        tempStr = "";
         continue;
       }
 
@@ -205,38 +215,34 @@ const split = (str: string, separator: string | number = ' '): string[] => {
   return array;
 };
 
-const slice = (
-  target: any[] | string,
-  start: number = 0,
-  end: number = target.length,
-): any[] | string => {
-  const isString = typeof target === 'string';
+const slice = <T>(target: T[] | string, start = 0, end = target.length): T[] | string => {
+  const isString = typeof target === "string";
 
-  let sliced: any[] | string = isString ? '' : [];
+  let sliced = (isString ? "" : []) as T[] | string;
 
   for (let i = start; i < end; i++) {
     const element = target[i];
 
-    if (isString) sliced += element;
+    if (isString) (sliced as string) += element;
     else (sliced as any[]).push(element);
   }
 
   return sliced;
 };
 
-const push = (arr: any[], element: any): number => {
+const push = <T>(arr: T[], element: T): number => {
   arr[arr.length] = element;
   return arr.length;
 };
 
-const pop = (arr: any[]): any => {
-  const poppedElement = arr.at(-1);
+const pop = <T>(arr: T[]): T => {
+  const poppedElement = arr.at(-1) as T;
   arr.length = arr.length - 1;
 
   return poppedElement;
 };
 
-const flatMap = <T>(arr: T[], cb: (el: T, i: number, arr: any[]) => any): any[] => {
+const flatMap = <T>(arr: T[], cb: TCb<T>): any[] => {
   const mappedArray = [];
 
   for (let i = 0; i < arr.length; i++) {
