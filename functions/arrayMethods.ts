@@ -256,6 +256,18 @@ const flatMap = <T>(arr: T[], cb: TCb<T>): any[] => {
   return mappedArray;
 };
 
+const shift = <T>(arr: T[]): T | undefined => {
+  if (!arr.length) return;
+  const shiftedElement = arr[0];
+
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i + 1];
+  }
+
+  arr.length = arr.length - 1;
+  return shiftedElement;
+};
+
 export {
   forEach,
   find,
@@ -277,4 +289,5 @@ export {
   push,
   pop,
   flatMap,
+  shift,
 };

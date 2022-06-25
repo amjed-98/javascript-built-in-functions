@@ -19,6 +19,7 @@ import {
   push,
   pop,
   flatMap,
+  shift,
 } from '../functions/arrayMethods';
 1;
 
@@ -406,5 +407,25 @@ describe('flatMap', () => {
     expect(func).toHaveBeenNthCalledWith(2, '', 1, startingArray);
     expect(func).toHaveBeenNthCalledWith(3, 'California', 2, startingArray);
     expect(func).toHaveBeenCalledTimes(3);
+  });
+});
+
+describe('Shift', () => {
+  it('should remove the first element from the array', () => {
+    const startingArray = [1, 2, 3];
+
+    const shiftedElement = shift<number>(startingArray);
+
+    expect(startingArray).toHaveLength(2);
+    expect(startingArray[0]).toEqual(2);
+    expect(shiftedElement).toEqual(1);
+  });
+
+  it('should return undefined when array is empty', () => {
+    const startingArray: [] = [];
+
+    const shiftedElement = shift<undefined>(startingArray);
+
+    expect(shiftedElement).toBeUndefined();
   });
 });
