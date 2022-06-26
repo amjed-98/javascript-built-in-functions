@@ -378,12 +378,20 @@ describe('slice', () => {
 });
 
 describe('push', () => {
-  const startingArray = [1, 2, 3];
   it('should push element to last index', () => {
+    const startingArray = [1, 2, 3];
     const newLength = push(startingArray, 4);
 
     expect(startingArray).toEqual([1, 2, 3, 4]);
     expect(newLength).toEqual(4);
+  });
+
+  it('should push multiple elements to last index', () => {
+    const startingArray = [1, 2, 3];
+    const newLength = push(startingArray, 4, 5, 6);
+
+    expect(startingArray).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(newLength).toEqual(6);
   });
 });
 

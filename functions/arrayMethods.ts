@@ -112,7 +112,7 @@ const reduce = <T>(array: T[], cb: TReduceCb<T>, initValue?: any) => {
 };
 
 const fill = <T>(array: any[], value?: T, start = 0, end = array?.length): T[] => {
-  if (!array) throw new Error("please pass an array as a first argument");
+  if (!array) throw new Error('please pass an array as a first argument');
   if (end > array.length) end = array.length;
   if (start < 0) start = 0;
 
@@ -168,8 +168,8 @@ const reverse = <T>(array: T[]): T[] => {
   return array;
 };
 
-const join = <T>(array: T[], separator = ","): string => {
-  let str = "";
+const join = <T>(array: T[], separator = ','): string => {
+  let str = '';
 
   for (const index in array) {
     // ? if last element don't insert separator
@@ -184,19 +184,19 @@ const join = <T>(array: T[], separator = ","): string => {
   return str;
 };
 
-const split = (str: string, separator: string | number = " "): string[] => {
+const split = (str: string, separator: string | number = ' '): string[] => {
   const array: string[] = [];
 
-  if (separator === " ") return [str];
+  if (separator === ' ') return [str];
 
-  if (separator === "") {
+  if (separator === '') {
     for (let i = 0; i < str.length; i++) {
       const char = str[i];
       if (char === `${separator}`) continue;
       array.push(char);
     }
   } else {
-    let tempStr = "";
+    let tempStr = '';
 
     for (let i = 0; i < str.length; i++) {
       const char = str[i];
@@ -205,7 +205,7 @@ const split = (str: string, separator: string | number = " "): string[] => {
         if (i === str.length - 1) tempStr += char;
 
         array.push(tempStr);
-        tempStr = "";
+        tempStr = '';
         continue;
       }
 
@@ -216,9 +216,9 @@ const split = (str: string, separator: string | number = " "): string[] => {
 };
 
 const slice = <T>(target: T[] | string, start = 0, end = target.length): T[] | string => {
-  const isString = typeof target === "string";
+  const isString = typeof target === 'string';
 
-  let sliced = (isString ? "" : []) as T[] | string;
+  let sliced = (isString ? '' : []) as T[] | string;
 
   for (let i = start; i < end; i++) {
     const element = target[i];
@@ -230,8 +230,10 @@ const slice = <T>(target: T[] | string, start = 0, end = target.length): T[] | s
   return sliced;
 };
 
-const push = <T>(arr: T[], element: T): number => {
-  arr[arr.length] = element;
+const push = <T>(arr: T[], ...elements: T[]): number => {
+  for (const key in elements) {
+    arr[arr.length] = elements[key];
+  }
   return arr.length;
 };
 
