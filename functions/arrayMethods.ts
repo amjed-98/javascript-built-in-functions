@@ -268,6 +268,11 @@ const shift = <T>(arr: T[]): T | undefined => {
   return shiftedElement;
 };
 
+const unshift = <T>(arr: T[], ...elements: T[]): number => {
+  arr.splice(0, 0, ...elements);
+  return arr.length;
+};
+
 export {
   forEach,
   find,
@@ -290,4 +295,5 @@ export {
   pop,
   flatMap,
   shift,
+  unshift,
 };

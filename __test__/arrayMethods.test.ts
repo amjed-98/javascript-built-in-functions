@@ -20,6 +20,7 @@ import {
   pop,
   flatMap,
   shift,
+  unshift,
 } from '../functions/arrayMethods';
 1;
 
@@ -427,5 +428,27 @@ describe('Shift', () => {
     const shiftedElement = shift<undefined>(startingArray);
 
     expect(shiftedElement).toBeUndefined();
+  });
+});
+
+describe('Unshift', () => {
+  it('should add an element to first index of the array', () => {
+    const startingArray = [1, 2, 3];
+
+    const returnedValue = unshift<number>(startingArray, 0);
+
+    expect(returnedValue).toEqual(4);
+    expect(startingArray).toHaveLength(4);
+    expect(startingArray).toEqual([0, 1, 2, 3]);
+  });
+
+  it('should add multiple element at the first of the array', () => {
+    const startingArray = [4, 5, 6, 7];
+
+    const returnedValue = unshift<number>(startingArray, 1, 2, 3);
+
+    expect(returnedValue).toEqual(7);
+    expect(startingArray).toHaveLength(7);
+    expect(startingArray).toEqual([1, 2, 3, 4, 5, 6, 7]);
   });
 });
